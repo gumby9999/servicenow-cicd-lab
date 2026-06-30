@@ -1,0 +1,24 @@
+# Cloud Dimensions - ServiceNow CI/CD lab pipeline
+# Branch: lab2-start  (Lab 2 / Lesson 4 - Promote an Application via the CICD API)
+# Starting state: authentication is already wired. Your task is to add the apply-changes step.
+name: CICD Pipeline
+
+on:
+  push:
+    branches: [lab2-start]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to ServiceNow
+        uses: servicenow/sncicd-authenticate@v2
+        with:
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          client-id: ${{ secrets.SN_CLIENT_ID }}
+          client-secret: ${{ secrets.SN_CLIENT_SECRET }}
+
+      # TODO: Add apply changes step here
