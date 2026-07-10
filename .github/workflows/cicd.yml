@@ -1,0 +1,30 @@
+# Cloud Dimensions - ServiceNow CI/CD lab pipeline
+# Branch: main  (Lab 4 / Lesson 8 - Run an ATF Suite and Instance Scan in a Pipeline)
+# Starting state: this is the completed Lab 3 pipeline (job-level pipeline credentials +
+# apply-changes step). Your task is to add the ATF test suite step (Part 1) and the
+# instance scan step (Part 2), each with its own step-level env block.
+name: CICD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      nowUsername: ${{ secrets.SN_USERNAME }}
+      nowPassword: ${{ secrets.SN_PASSWORD }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Apply changes
+        uses: ServiceNow/sncicd-apply-changes@2.0.0
+        env:
+          nowSourceInstance: ${{ secrets.SN_INSTANCE_DOMAIN }}
+          appScope: x_cd_grc_app
+
+      # TODO: Add the ATF test suite step here (Part 1)
+
+      # TODO: Add the instance scan step here (Part 2)
