@@ -21,6 +21,7 @@ jobs:
 
       - name: Apply changes
         uses: ServiceNow/sncicd-apply-changes@2.0.0
+        continue-on-error: true
         env:
           nowSourceInstance: ${{ secrets.SN_INSTANCE_DOMAIN }}
           appScope: x_cd_grc_app
