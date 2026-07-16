@@ -1,18 +1,27 @@
 # Cloud Dimensions - ServiceNow CI/CD lab pipeline
 # Branch: lab3-start  (Lab 3 / Lesson 6 - Build a GitHub Actions Workflow)
-# Starting state: trigger and checkout only. Add the job-level pipeline credentials and
-# the apply-changes step (with its own step-level instance variable).
+# Completed state: job-level pipeline credentials added, plus the apply-changes step
+# with its own step-level instance variable.
 name: CICD Pipeline
 
 on:
   push:
     branches: [lab3-start]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      nowUsername: ${{ secrets.SN_USERNAME }}
+      nowPassword: ${{ secrets.SN_PASSWORD }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # TODO: Add the pipeline credentials (job-level env block) and the apply changes step here
+      - name: Apply changes
+        uses: ServiceNow/sncicd-apply-changes@2.0.0
+        continue-on-error: true
+        env:
+          nowSourceInstance: ${{ secrets.SN_INSTANCE_DOMAIN }}
+          appScope: x_cd_grc_app
