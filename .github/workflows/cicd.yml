@@ -1,13 +1,14 @@
 # Cloud Dimensions - ServiceNow CI/CD lab pipeline
 # Branch: lab2-start  (Lab 2 / Lesson 4 - Promote an Application via the CICD API)
-# Starting state: checkout only. Your task is to add the apply-changes step, including its
-# own env block (each CICD Spoke action authenticates on its own; there is no shared
-# authenticate step in the real ServiceNow/sncicd-* action family).
+# Completed state: apply-changes step added, with its own step-level env block
+# (each CICD Spoke action authenticates on its own; there is no shared authenticate step
+# in the real ServiceNow/sncicd-* action family).
 name: CICD Pipeline
 
 on:
   push:
     branches: [lab2-start]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -16,4 +17,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # TODO: Add apply changes step here
+      - name: Apply changes
+        uses: ServiceNow/sncicd-apply-changes@2.0.0
+        continue-on-error: true
+        env:
+          nowUsername: ${{ secrets.SN_USERNAME }}
+          nowPassword: ${{ secrets.SN_PASSWORD }}
+          nowSourceInstance: ${{ secrets.SN_INSTANCE_DOMAIN }}
+          appScope: x_cd_grc_app
