@@ -8,7 +8,6 @@ name: CICD Pipeline
 on:
   push:
     branches: [lab2-start]
-  workflow_dispatch:
 
 jobs:
   deploy:
