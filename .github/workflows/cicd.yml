@@ -24,3 +24,4 @@ jobs:
           nowPassword: ${{ secrets.SN_PASSWORD }}
           nowSourceInstance: ${{ secrets.SN_INSTANCE_DOMAIN }}
           appScope: x_cd_grc_app
+# screenshot-refresh: trigger a fresh run to capture the pending log state
