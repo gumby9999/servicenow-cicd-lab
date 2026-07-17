@@ -25,3 +25,4 @@ jobs:
           nowSourceInstance: ${{ secrets.SN_INSTANCE_DOMAIN }}
           appScope: x_cd_grc_app
 # screenshot-refresh: trigger a fresh run to capture the pending log state
+# screenshot-refresh: capture pending log state 1784298118
