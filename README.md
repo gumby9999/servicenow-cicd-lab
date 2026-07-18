@@ -36,4 +36,3 @@ See Lab 1 (Lesson 2) for instructions on creating these secrets.
 ---
 
 *Cloud Dimensions internal training resource. For course support, contact the ServiceNow University team.*
-<!-- capture-pending-run-log trigger 2026-07-18T08:51:50Z (auto-revert) -->
